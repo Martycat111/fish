@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://nv4vif52dghv"]
+
+[ext_resource type="Script" uid="uid://c0rfuk4qsc876" path="res://scenes/interactable/interactable.gd" id="1_g88tj"]
+[ext_resource type="Script" uid="uid://b7m7b7phfy73o" path="res://scenes/interactable/data.gd" id="2_4b5tc"]
+[ext_resource type="Texture2D" uid="uid://b02u70gh0y1jf" path="res://misc/icon.svg" id="3_45588"]
+
+[sub_resource type="Resource" id="Resource_g88tj"]
+script = ExtResource("2_4b5tc")
+texture = ExtResource("3_45588")
+metadata/_custom_type_script = "uid://b7m7b7phfy73o"
+
+[node name="Interactable" type="Sprite2D" unique_id=842031969]
+script = ExtResource("1_g88tj")
+data = SubResource("Resource_g88tj")
