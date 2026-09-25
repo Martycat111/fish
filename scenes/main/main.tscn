@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://cjuaovgvb7gxe"]
 
 [ext_resource type="Script" uid="uid://dka13b0xj64ai" path="res://scenes/main/main.gd" id="1_hyk8p"]
+[ext_resource type="TileSet" uid="uid://ejp47dcn53oo" path="res://global/classes/ship/default_ship_tile_set.tres" id="2_k2fmo"]
+[ext_resource type="Script" uid="uid://hxcohlkncnnv" path="res://global/classes/ship/ship.gd" id="3_l3cfh"]
 
 [node name="Main" type="Node2D" unique_id=1617692764]
 script = ExtResource("1_hyk8p")
+
+[node name="Ship" type="TileMapLayer" parent="." unique_id=442848898]
+tile_set = ExtResource("2_k2fmo")
+script = ExtResource("3_l3cfh")
+metadata/_custom_type_script = "uid://hxcohlkncnnv"
