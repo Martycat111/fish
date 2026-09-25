@@ -1,9 +1,11 @@
+@tool
 extends Sprite2D
 class_name Interactable
 
 @export var data: InteractableData
 
-func _enter_tree() -> void:
+func _ready() -> void:
+	print("hmmm")
 	data.data_changed.connect(_data_changed)
 	data.data_changed.emit()
 

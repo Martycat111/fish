@@ -1,7 +1,10 @@
 [gd_resource type="TileSet" format=3 uid="uid://ejp47dcn53oo"]
 
+[ext_resource type="PackedScene" uid="uid://nv4vif52dghv" path="res://scenes/interactable/interactable.tscn" id="1_lqmg5"]
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8qr1u"]
 resource_name = "Interactables"
+scenes/1/scene = ExtResource("1_lqmg5")
 
 [resource]
 tile_size = Vector2i(128, 128)

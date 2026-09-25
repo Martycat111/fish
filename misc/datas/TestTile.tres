@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InteractableData" format=3 uid="uid://dc06guispl5r7"]
+
+[ext_resource type="Script" uid="uid://b7m7b7phfy73o" path="res://scenes/interactable/data.gd" id="1_6tb38"]
+[ext_resource type="Texture2D" uid="uid://b02u70gh0y1jf" path="res://misc/textures/icon.svg" id="2_xkuxi"]
+
+[resource]
+script = ExtResource("1_6tb38")
+texture = ExtResource("2_xkuxi")
+metadata/_custom_type_script = "uid://b7m7b7phfy73o"
