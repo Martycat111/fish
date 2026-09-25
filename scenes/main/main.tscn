@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://dka13b0xj64ai" path="res://scenes/main/main.gd" id="1_hyk8p"]
 [ext_resource type="TileSet" uid="uid://ejp47dcn53oo" path="res://global/classes/ship/default_ship_tile_set.tres" id="2_k2fmo"]
 [ext_resource type="Script" uid="uid://hxcohlkncnnv" path="res://global/classes/ship/ship.gd" id="3_l3cfh"]
-[ext_resource type="Texture2D" uid="uid://b2cr82msx1605" path="res://misc/textures/Fish-1.png.png" id="4_l3cfh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k2fmo"]
+load_path = "res://.godot/imported/Fish-1.png.png-a35f7282848c336d1dba800908f2ffaf.ctex"
 
 [node name="Main" type="Node2D" unique_id=1617692764]
 script = ExtResource("1_hyk8p")
@@ -16,4 +18,4 @@ metadata/_custom_type_script = "uid://hxcohlkncnnv"
 [node name="Fish1_png" type="Sprite2D" parent="." unique_id=816810846]
 position = Vector2(-1, -1.5258789e-05)
 scale = Vector2(7.640625, 7.640625)
-texture = ExtResource("4_l3cfh")
+texture = SubResource("CompressedTexture2D_k2fmo")
