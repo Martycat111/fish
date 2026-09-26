@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://cjuaovgvb7gxe"]
 
-[ext_resource type="Script" uid="uid://dka13b0xj64ai" path="res://scenes/main/main.gd" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://dt402fglf8se4" path="res://scenes/player/player_ship.tscn" id="2_iuonh"]
 [ext_resource type="Script" uid="uid://yuilffyolyue" path="res://scenes/main/hud_materialnotify.gd" id="3_k2fmo"]
 [ext_resource type="Script" uid="uid://djcfpmueebs8b" path="res://scenes/main/asteroid.gd" id="4_l3cfh"]
 
 [node name="Main" type="Node2D" unique_id=1617692764]
-script = ExtResource("1_hyk8p")
 
 [node name="PlayerShip" parent="." unique_id=1549670618 instance=ExtResource("2_iuonh")]
 
