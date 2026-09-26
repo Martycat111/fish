@@ -34,7 +34,7 @@ size = Vector2(40, 191)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2diw"]
 size = Vector2(20, 25)
 
-[node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2")]
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2", "breakable_panel", "breakable_electrical", "breakable_glass")]
 motion_mode = 1
 script = ExtResource("1_w5kba")
 player = NodePath("Player")
@@ -42,6 +42,9 @@ fish_cover = NodePath("ShipInterior/FishCover")
 ship_interior = NodePath("ShipInterior")
 wall_layer_1 = NodePath("ShipInterior/WallLayer1")
 wall_layer_2 = NodePath("ShipInterior/WallLayer2")
+breakable_panel = NodePath("ShipInterior/BreakablePanel")
+breakable_electrical = NodePath("ShipInterior/BreakableElectrical")
+breakable_glass = NodePath("ShipInterior/BreakableGlass")
 
 [node name="ShipInterior" type="TileMapLayer" parent="." unique_id=1942757402 node_paths=PackedStringArray("breakable_panel", "breakable_electrical", "breakable_glass")]
 tile_map_data = PackedByteArray("AAD///7/AAABAAIAAAAAAP7/AQACAAMAAAD+//7/AQACAAMAAAD/////AQACAAMAAAD+////AAABAAIAAAD9////AQACAAMAAAD8////AAABAAIAAAD8/wAAAQACAAMAAAD9/wAAAAABAAIAAAD+/wAAAQACAAMAAAD//wAAAAABAAIAAAD+/wEAAAABAAIAAAD+/wIAAQACAAMAAAD9/wIAAAABAAIAAAD9/wEAAQACAAMAAAD8/wEAAAABAAIAAAD7/wAAAAABAAIAAAD7/wEAAAAAAAMAAAD7////AAABAAMAAAD8//7/AQACAAMAAAD9//3/AQACAAMAAAD+//z/AAACAAAAAAD///v/AAACAAAAAAD///z/AAABAAIAAAAAAP3/AAABAAIAAAD///3/AQACAAMAAAD//wEAAQACAAMAAAABAP//AQADAAIAAAACAP7/AQADAAIAAAABAP3/AQADAAIAAAAAAPz/AQADAAIAAAACAAEAAQADAAIAAAABAAIAAQADAAIAAAAAAAMAAQADAAIAAAD//wIAAAABAAIAAAAAAAEAAAABAAIAAAABAAAAAAABAAIAAAACAP//AAACAAMAAAAAAAAAAQADAAIAAAD7//7/AQADAAIAAAD6//3/AQADAAIAAAD6/wIAAQADAAIAAAD+//3/AAABAAIAAAD9//7/AAABAAIAAAA=")
