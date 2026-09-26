@@ -17,7 +17,11 @@ func _process(_delta: float) -> void:
 func notify_array(items: Array):
 	for i in items:
 		notify(i, 1)
+<<<<<<< Updated upstream
 		await 
+=======
+		wait(1000)
+>>>>>>> Stashed changes
 	pass
 
 func notify(item_name: String, amount: int):

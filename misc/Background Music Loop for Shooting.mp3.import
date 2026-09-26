@@ -2,7 +2,11 @@
 
 importer="mp3"
 type="AudioStreamMP3"
+<<<<<<< Updated upstream
 uid="uid://c13y286r4g7wk"
+=======
+uid="uid://dsglsgc3sxu8u"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Background Music Loop for Shooting.mp3-6c417df7bb38c79c96048c0f3d3b586a.mp3str"
 
 [deps]
