@@ -18,7 +18,11 @@ func notify_array(items: Array):
 	for i in items:
 		notify(i, 1)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		await 
+=======
+		wait(1000)
+>>>>>>> Stashed changes
 =======
 		wait(1000)
 >>>>>>> Stashed changes

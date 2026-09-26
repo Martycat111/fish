@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://b2cr82msx1605" path="res://misc/textures/Fish.png" id="4_l3cfh"]
 [ext_resource type="Script" uid="uid://yuilffyolyue" path="res://scenes/main/hud_materialnotify.gd" id="5_6q06x"]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://scenes/main/asteroid_get.gd" id="6_ow5a4"]
+=======
+[ext_resource type="Script" uid="uid://c4t6sbltx0ur3" path="res://scenes/main/asteroid_get.gd" id="6_ow5a4"]
+>>>>>>> Stashed changes
 =======
 [ext_resource type="Script" uid="uid://c4t6sbltx0ur3" path="res://scenes/main/asteroid_get.gd" id="6_ow5a4"]
 >>>>>>> Stashed changes
