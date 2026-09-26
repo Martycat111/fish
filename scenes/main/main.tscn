@@ -7,3 +7,5 @@
 script = ExtResource("1_hyk8p")
 
 [node name="PlayerShip" parent="." unique_id=1549670618 instance=ExtResource("2_iuonh")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1294395109]
