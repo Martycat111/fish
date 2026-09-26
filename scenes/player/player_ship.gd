@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export var breakable_glass: TileMapLayer
 @export var camera: Camera2D
 
+@onready var music = get_node("../AudioStreamPlayer2D")
+
 var speed: float = 10
 var rotation_speed: float = 2
 
@@ -17,6 +19,7 @@ var rotation_speed: float = 2
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_ship_mode"):
+		music.changemusic()
 		player.frozen = !player.frozen
 		var ship_active: bool = player.frozen
 		if ship_active:
