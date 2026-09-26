@@ -1,7 +1,14 @@
 extends Node2D
 
 var chance
-var items = []
+var items: Array[String] = []
+
+enum Chances {
+	COPPER = 2,
+	IRON = 3,
+	GOLD = 1,
+	STONE = 4,
+}
 
 @onready var noter = get_node("../Notifier")
 
@@ -15,26 +22,19 @@ func breakdown():
 func roll_chance(): chance = randf()
 
 func roll_items():
-	items = []
+	items.clear()
 	
 	#copper
-	roll_chance()
-	if chance > 0.66:
-		items.append("Copper")
-	roll_chance()
-	if chance > 0.66:
-		items.append("Copper")
+	for i in range(Chances.COPPER):
+		roll_chance()
+		if chance > 0.66:
+			items.append("Copper")
 	
 	#iron
-	roll_chance()
-	if chance > 0.5:
-		items.append("Iron")
-	roll_chance()
-	if chance > 0.5:
-		items.append("Iron")
-	roll_chance()
-	if chance > 0.5:
-		items.append("Iron")
+	for i in range(Chances.IRON):
+		roll_chance()
+		if chance > 0.5:
+			items.append("Iron")
 	
 	#gold
 	roll_chance()
@@ -42,15 +42,7 @@ func roll_items():
 		items.append("Gold")
 	
 	#stone
-	roll_chance()
-	if chance > 0.5:
-		items.append("Stone")
-	roll_chance()
-	if chance > 0.5:
-		items.append("Stone")
-	roll_chance()
-	if chance > 0.5:
-		items.append("Stone")
-	roll_chance()
-	if chance > 0.5:
-		items.append("Stone")
+	for i in range(Chances.STONE):
+		roll_chance()
+		if chance > 0.5:
+			items.append("Stone")
