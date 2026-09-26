@@ -10,9 +10,17 @@ enum Chances {
 	STONE = 4,
 }
 
+var asteroid_spawn_interval = 5
+var time_since_spawn = 0
+
 @onready var noter = get_node("../Notifier")
 
-func _process(_delta: float) -> void: pass
+func _process(delta: float) -> void: 
+	time_since_spawn += delta
+	if time_since_spawn > asteroid_spawn_interval:
+		time_since_spawn = 0
+		asteroid_spawn_interval += randi_range(0, 2)
+		print("spawn a beor")
 
 func breakdown():
 	roll_items()
