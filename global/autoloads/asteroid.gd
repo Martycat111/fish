@@ -41,7 +41,6 @@ func breakdown():
 func roll_chance(): chance = randf()
 
 func roll_items():
-	items.clear()
 	
 	#copper
 	for i in range(Chances.COPPER):

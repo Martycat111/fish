@@ -17,7 +17,7 @@ func notify_array(al: Array):
 	for i in al:
 		notify(i, 1)
 		await anim.animation_finished
-	
+
 
 func notify(item_name: String, amount: int):
 	var instance = notification_scene.instantiate()

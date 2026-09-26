@@ -10,6 +10,15 @@ const DEFAULT_SHIP_TILE_SET = preload("uid://ejp47dcn53oo")
 
 var last_child_count: int = 0
 
+class BrokenWarning:
+	extends Sprite2D
+	
+	func _ready() -> void:
+		pass
+	
+	func popup():
+		pass
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tile_set = DEFAULT_SHIP_TILE_SET

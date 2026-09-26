@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var breakable_panel: TileMapLayer
 @export var breakable_electrical: TileMapLayer
 @export var breakable_glass: TileMapLayer
+@export var camera: Camera2D
 
 var speed: float = 10
 var rotation_speed: float = 2
@@ -18,6 +19,10 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_ship_mode"):
 		player.frozen = !player.frozen
 		var ship_active: bool = player.frozen
+		if ship_active:
+			camera.zoom = Vector2(1, 1)
+		else:
+			camera.zoom = Vector2(2, 2)
 		
 		fish_cover.visible = ship_active
 		player.visible = !ship_active
