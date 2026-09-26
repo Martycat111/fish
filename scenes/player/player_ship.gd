@@ -10,7 +10,6 @@ var speed: float = 10
 var rotation_speed: float = 2
 
 
-
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_ship_mode"):
 		player.frozen = !player.frozen
@@ -22,13 +21,14 @@ func _physics_process(delta: float) -> void:
 		wall_layer_1.enabled = !ship_active
 		wall_layer_2.enabled = !ship_active
 	
+	if Input.is_action_pressed("move_forward"):
+		velocity += speed * Vector2.RIGHT.rotated(rotation)
+		
+	rotation_degrees -= rotation_speed * (Input.get_action_strength("rotate_ship_left") - Input.get_action_strength("rotate_ship_right"))
+	
 	if !player.frozen:
 		return
 	
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_pressed("move_forward"):
-		velocity += speed * Vector2.RIGHT.rotated(rotation)
-	rotation_degrees -= rotation_speed * (Input.get_action_strength("rotate_ship_left") - Input.get_action_strength("rotate_ship_right"))
 	
 	
 	move_and_slide()
