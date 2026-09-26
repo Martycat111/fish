@@ -5,19 +5,9 @@
 [ext_resource type="Script" uid="uid://hxcohlkncnnv" path="res://global/classes/ship/ship.gd" id="3_l3cfh"]
 [ext_resource type="Texture2D" uid="uid://b2cr82msx1605" path="res://misc/textures/Fish.png" id="4_l3cfh"]
 [ext_resource type="Script" uid="uid://yuilffyolyue" path="res://scenes/main/hud_materialnotify.gd" id="5_6q06x"]
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://scenes/main/asteroid_get.gd" id="6_ow5a4"]
-=======
 [ext_resource type="Script" uid="uid://c4t6sbltx0ur3" path="res://scenes/main/asteroid_get.gd" id="6_ow5a4"]
->>>>>>> Stashed changes
-=======
-[ext_resource type="Script" uid="uid://c4t6sbltx0ur3" path="res://scenes/main/asteroid_get.gd" id="6_ow5a4"]
->>>>>>> Stashed changes
-=======
-[ext_resource type="Script" uid="uid://c4t6sbltx0ur3" path="res://scenes/main/asteroid_get.gd" id="6_ow5a4"]
->>>>>>> Stashed changes
+
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffgno"]
 radius = 126.0
@@ -25,6 +15,9 @@ height = 280.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffgno"]
 size = Vector2(31, 191)
+[ext_resource type="PackedScene" uid="uid://dt402fglf8se4" path="res://scenes/player/player_ship.tscn" id="2_iuonh"]
+[ext_resource type="Script" uid="uid://ciyahdeoy5yr2" path="res://scenes/main/notificaiton.gd" id="2_k2fmo"]
+[ext_resource type="Script" uid="uid://bubs3exv3qf0v" path="res://scenes/main/asteroud.gd" id="2_l3cfh"]
 
 [node name="Main" type="Node2D" unique_id=1617692764]
 script = ExtResource("1_hyk8p")
