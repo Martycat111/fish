@@ -5,15 +5,12 @@ var items = []
 
 @onready var noter = get_node("../Notifier")
 
-func _ready() -> void:
+func _process(_delta: float) -> void: pass
+
+func breakdown():
 	roll_items()
 	print(items)
 	noter.notify_array(items)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 func roll_chance(): chance = randf()
 
