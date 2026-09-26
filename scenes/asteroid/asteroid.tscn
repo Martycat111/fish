@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://djsyyf4g871mf"]
+
+[ext_resource type="Texture2D" uid="uid://ntrfii2yafxn" path="res://misc/textures/Asteroids.png" id="1_phgi8"]
+[ext_resource type="Script" uid="uid://d2iomi43giuu5" path="res://scenes/asteroid/aster.gd" id="2_j1t37"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j1t37"]
+texture = ExtResource("1_phgi8")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_2b7dg"]
+sources/0 = SubResource("TileSetAtlasSource_j1t37")
+
+[node name="Node2D" type="Node2D" unique_id=1002435834]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1474255760]
+scale = Vector2(10, 10)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0)
+tile_set = SubResource("TileSet_2b7dg")
+script = ExtResource("2_j1t37")

@@ -56,12 +56,6 @@ breakable_electrical = NodePath("BreakableElectrical")
 breakable_glass = NodePath("BreakableGlass")
 metadata/_custom_type_script = "uid://hxcohlkncnnv"
 
-[node name="FishCover" type="Sprite2D" parent="ShipInterior" unique_id=2135026274]
-visible = false
-position = Vector2(0, -1.5258789e-05)
-scale = Vector2(8, 8)
-texture = ExtResource("3_fm4s6")
-
 [node name="WallLayer1" type="TileMapLayer" parent="ShipInterior" unique_id=828989712]
 tile_map_data = PackedByteArray("AAAAAPv/AAABAAAAAAABAPz/AAABAAAAAAACAP3/AAABAAAAAAACAP7/AAABAAAAAAACAP//AAABAAAAAAACAAAAAAABAAAAAAACAAEAAAABAAAAAAABAAIAAAABAAAAAAAAAAMAAAAAAAAAAAD6/wIAAAAAAAAAAAD6//z/AAABAAAAAAD6//3/AAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD///v/AAAAAAAAAAD+//z/AAAAAAAAAAD9//3/AAAAAAAAAAD7//3/AAABAAAAAAA=")
 tile_set = SubResource("TileSet_ffgno")
@@ -81,6 +75,12 @@ tile_set = ExtResource("1_iu1tc")
 [node name="BreakableGlass" type="TileMapLayer" parent="ShipInterior" unique_id=1596485531]
 tile_map_data = PackedByteArray("AAD8/wAAAQACAAIAAAD9//3/AQACAAIAAAA=")
 tile_set = ExtResource("1_iu1tc")
+
+[node name="FishCover" type="Sprite2D" parent="ShipInterior" unique_id=2135026274]
+visible = false
+position = Vector2(0, -1.5258789e-05)
+scale = Vector2(8, 8)
+texture = ExtResource("3_fm4s6")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1273243505]
 position = Vector2(-27, -24)
