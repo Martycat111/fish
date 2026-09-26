@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dccc3q1i3lnuo"
-path="res://.godot/imported/Ship_exterior.png-db4bb387a3789edb39827d3b8ae6e19e.ctex"
+uid="uid://bv8svtkaqbkaw"
+path="res://.godot/imported/Fishingrod.png-95ae05c50607711448ed96549bb4de8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://misc/textures/Ship_exterior.png"
-dest_files=["res://.godot/imported/Ship_exterior.png-db4bb387a3789edb39827d3b8ae6e19e.ctex"]
+source_file="res://misc/textures/Fishingrod.png"
+dest_files=["res://.godot/imported/Fishingrod.png-95ae05c50607711448ed96549bb4de8b.ctex"]
 
 [params]
 

@@ -15,24 +15,24 @@ size = Vector2(31, 191)
 [node name="Main" type="Node2D" unique_id=1617692764]
 script = ExtResource("1_hyk8p")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=745898813]
+[node name="Ship" type="CharacterBody2D" parent="." unique_id=745898813]
 motion_mode = 1
 
-[node name="ShipInterior" type="TileMapLayer" parent="CharacterBody2D" unique_id=1810373799]
-tile_set = ExtResource("2_k2fmo")
-script = ExtResource("3_l3cfh")
-metadata/_custom_type_script = "uid://hxcohlkncnnv"
-
-[node name="FishCover" type="Sprite2D" parent="CharacterBody2D/ShipInterior" unique_id=816810846]
+[node name="FishCover" type="Sprite2D" parent="Ship" unique_id=816810846]
 position = Vector2(-1, -1.5258789e-05)
 scale = Vector2(7.640625, 7.640625)
 texture = ExtResource("4_l3cfh")
 
-[node name="BodyCollision" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1904869457]
+[node name="ShipInterior" type="TileMapLayer" parent="Ship" unique_id=1810373799]
+tile_set = ExtResource("2_k2fmo")
+script = ExtResource("3_l3cfh")
+metadata/_custom_type_script = "uid://hxcohlkncnnv"
+
+[node name="BodyCollision" type="CollisionShape2D" parent="Ship" unique_id=1904869457]
 position = Vector2(-27, -22)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ffgno")
 
-[node name="TailCollision" type="CollisionShape2D" parent="CharacterBody2D" unique_id=574349878]
+[node name="TailCollision" type="CollisionShape2D" parent="Ship" unique_id=574349878]
 position = Vector2(-161.5, -19.5)
 shape = SubResource("RectangleShape2D_ffgno")
