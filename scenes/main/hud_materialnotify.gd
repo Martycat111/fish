@@ -18,6 +18,14 @@ func notify_array(al: Array):
 		notify(i, 1)
 		await anim.animation_finished
 
+func notify_string(string: String):
+	var instance = notification_scene.instantiate()
+	add_child(instance)
+	instance.set_text(string)
+	anim = instance.get_node("AnimationPlayer")
+	anim.play("Note")
+	await anim.animation_finished
+	instance.queue_free()
 
 func notify(item_name: String, amount: int):
 	var instance = notification_scene.instantiate()

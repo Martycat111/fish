@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 		if ship_active:
 			camera.zoom = Vector2(1, 1)
 		else:
-			camera.zoom = Vector2(2, 2)
+			camera.zoom = Vector2(1.6, 1.6)
 		
 		fish_cover.visible = ship_active
 		player.visible = !ship_active

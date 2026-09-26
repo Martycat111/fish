@@ -61,8 +61,8 @@ _data = {
 }
 
 [node name="Notification" type="RichTextLabel" unique_id=875261935]
-offset_right = 199.0
-offset_bottom = 46.0
+offset_right = 394.0
+offset_bottom = 221.0
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "Example text"
