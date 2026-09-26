@@ -17,6 +17,9 @@ var time_since_spawn = 0
 
 var asteroid_scene = load("res://scenes/asteroid/asteroid.tscn")
 
+func ready() -> void:
+	breakdown()
+
 func _process(delta: float) -> void: 
 	time_since_spawn += delta
 	if time_since_spawn > asteroid_spawn_interval:
