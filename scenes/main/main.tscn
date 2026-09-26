@@ -11,7 +11,8 @@ script = ExtResource("1_hyk8p")
 [node name="asteroud" type="Node2D" parent="." unique_id=718028198]
 script = ExtResource("2_l3cfh")
 
-[node name="Notificaiton" type="Node2D" parent="." unique_id=871752164]
+[node name="notification" type="Node2D" parent="." unique_id=871752164]
+position = Vector2(800, 450)
 script = ExtResource("2_k2fmo")
 
 [node name="PlayerShip" parent="." unique_id=1549670618 instance=ExtResource("2_iuonh")]
