@@ -32,7 +32,6 @@ func _process(delta: float) -> void:
 		var posy = randi_range(-300, 300)
 		instance.position = Vector2(posx, posy)
 
-		
 
 func breakdown():
 	roll_items()
