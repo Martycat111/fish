@@ -36,15 +36,11 @@ size = Vector2(40, 191)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2diw"]
 size = Vector2(20, 25)
 
-<<<<<<< HEAD
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2b7dg"]
 radius = 36.735825
 height = 216.0
 
-[node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2")]
-=======
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2", "breakable_panel", "breakable_electrical", "breakable_glass")]
->>>>>>> b73945fe0b1ae0a53fb00a2e30b9d3098e3ae3be
 motion_mode = 1
 script = ExtResource("1_w5kba")
 player = NodePath("Player")

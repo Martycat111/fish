@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		if breakable_panel.get_used_cells().has(rounded_position):
 			breakable_panel.erase_cell(rounded_position)
 			breakable_panel.set_cell(rounded_position, 0, Vector2(1, 1))
-			
+				
 		if breakable_electrical.get_used_cells().has(rounded_position):
 			breakable_electrical.erase_cell(rounded_position)
 			breakable_electrical.set_cell(rounded_position, 0, Vector2(3, 1))
