@@ -2,7 +2,7 @@ extends Node2D
 
 var chance
 var items = []
-@onready var notifier = get_node("../Material-Notify")
+@onready var notifier = get_node("../notification")
 
 
 func _ready() -> void:
