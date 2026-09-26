@@ -8,8 +8,6 @@
 
 [node name="PlayerShip" parent="." unique_id=1549670618 instance=ExtResource("2_iuonh")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1294395109]
-
 [node name="Notifier" type="Node2D" parent="." unique_id=1021113939]
 position = Vector2(200, 200)
 script = ExtResource("3_k2fmo")
