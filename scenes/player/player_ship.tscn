@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://e14k4wv40k1o" path="res://scenes/player/player.gd" id="5_kjavq"]
 [ext_resource type="Texture2D" uid="uid://lf0rlggibn2m" path="res://misc/textures/Wall-sides.png" id="5_usbmo"]
 [ext_resource type="Texture2D" uid="uid://b02u70gh0y1jf" path="res://misc/textures/icon.svg" id="6_usbmo"]
+[ext_resource type="Texture2D" uid="uid://bv8svtkaqbkaw" path="res://misc/textures/Fishingrod.png" id="8_w6tu8"]
+[ext_resource type="Script" uid="uid://cymtm1fue1bgs" path="res://scenes/player/fih.gd" id="9_jovkm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w6tu8"]
 texture = ExtResource("5_usbmo")
@@ -34,7 +36,15 @@ size = Vector2(40, 191)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2diw"]
 size = Vector2(20, 25)
 
+<<<<<<< HEAD
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2b7dg"]
+radius = 36.735825
+height = 216.0
+
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2")]
+=======
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2", "breakable_panel", "breakable_electrical", "breakable_glass")]
+>>>>>>> b73945fe0b1ae0a53fb00a2e30b9d3098e3ae3be
 motion_mode = 1
 script = ExtResource("1_w5kba")
 player = NodePath("Player")
@@ -114,3 +124,18 @@ texture = ExtResource("6_usbmo")
 shape = SubResource("RectangleShape2D_e2diw")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=736890828]
+
+[node name="Fishingrod" type="Sprite2D" parent="." unique_id=286533785]
+position = Vector2(150, 0)
+rotation = 0.8813913
+scale = Vector2(5, 5)
+texture = ExtResource("8_w6tu8")
+script = ExtResource("9_jovkm")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Fishingrod" unique_id=610287997]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fishingrod/RigidBody2D" unique_id=1457033579]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CapsuleShape2D_2b7dg")
+
+[connection signal="body_entered" from="Fishingrod/RigidBody2D" to="Fishingrod" method="_on_rigid_body_2d_body_entered"]
