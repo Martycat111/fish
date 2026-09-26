@@ -2,22 +2,28 @@ extends Node2D
 
 
 var notification_scene = load("res://scenes/notification/notification.tscn")
+var anim
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	notify("Example", 1)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
+func notify_array(al: Array):
+	for i in al:
+		notify(i, 1)
+		await anim.animation_finished
+	
+
 func notify(item_name: String, amount: int):
 	var instance = notification_scene.instantiate()
 	add_child(instance)
 	instance.set_text("+" + str(amount) + " " + item_name)
-	var anim = instance.get_node("AnimationPlayer")
-	print(anim)
+	anim = instance.get_node("AnimationPlayer")
 	anim.play("Note")
 	await anim.animation_finished
 	instance.queue_free()
