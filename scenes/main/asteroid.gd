@@ -28,21 +28,25 @@ func roll_items():
 	for i in range(Chances.COPPER):
 		roll_chance()
 		if chance > 0.66:
+			Globals.copper += 1
 			items.append("Copper")
 	
 	#iron
 	for i in range(Chances.IRON):
 		roll_chance()
 		if chance > 0.5:
+			Globals.iron += 1
 			items.append("Iron")
 	
 	#gold
 	roll_chance()
 	if chance > 0.75:
+		Globals.gold += 1
 		items.append("Gold")
 	
 	#stone
 	for i in range(Chances.STONE):
 		roll_chance()
 		if chance > 0.5:
+			Globals.stone += 1
 			items.append("Stone")
