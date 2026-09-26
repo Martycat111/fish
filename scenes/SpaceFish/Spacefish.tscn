@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bu6d8uhh7ipd"]
+
+[ext_resource type="Texture2D" uid="uid://obwn0f6nth5b" path="res://misc/textures/SpaceFish.png" id="1_m8u2x"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=956145738]
+position = Vector2(33, 24)
+texture = ExtResource("1_m8u2x")
+hframes = 2
+vframes = 2

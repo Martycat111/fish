@@ -7,6 +7,8 @@
 
 [node name="PlayerShip" parent="." unique_id=1549670618 instance=ExtResource("2_iuonh")]
 
-[node name="Notifier" type="Node2D" parent="." unique_id=1021113939]
-position = Vector2(200, 200)
+[node name="Notifier" type="Node2D" parent="PlayerShip" unique_id=1021113939]
+position = Vector2(0, -300)
 script = ExtResource("3_k2fmo")
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1030334836]

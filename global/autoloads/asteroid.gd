@@ -13,7 +13,7 @@ enum Chances {
 var asteroid_spawn_interval = 0
 var time_since_spawn = 0
 
-@onready var noter = get_tree().root.get_node("Main/Notifier")
+@onready var noter = get_tree().root.get_node("Main/PlayerShip/Notifier")
 
 var asteroid_scene = load("res://scenes/asteroid/asteroid.tscn")
 
