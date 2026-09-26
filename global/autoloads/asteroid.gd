@@ -37,6 +37,7 @@ func breakdown():
 	roll_items()
 	print(items)
 	noter.notify_array(items)
+	items = []
 
 func roll_chance(): chance = randf()
 
