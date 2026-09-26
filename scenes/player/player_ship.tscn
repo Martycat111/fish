@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dt402fglf8se4"]
+
+[ext_resource type="TileSet" uid="uid://ejp47dcn53oo" path="res://global/classes/ship/default_ship_tile_set.tres" id="1_iu1tc"]
+[ext_resource type="Script" uid="uid://bay0hdi5cupvr" path="res://scenes/player/player_ship.gd" id="1_w5kba"]
+[ext_resource type="Script" uid="uid://hxcohlkncnnv" path="res://global/classes/ship/ship.gd" id="2_w5kba"]
+[ext_resource type="Texture2D" uid="uid://b2cr82msx1605" path="res://misc/textures/Fish.png" id="3_fm4s6"]
+[ext_resource type="Script" uid="uid://e14k4wv40k1o" path="res://scenes/player/player.gd" id="5_kjavq"]
+[ext_resource type="Texture2D" uid="uid://b02u70gh0y1jf" path="res://misc/textures/icon.svg" id="6_usbmo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffgno"]
+radius = 126.0
+height = 280.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffgno"]
+size = Vector2(40, 191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2diw"]
+size = Vector2(25, 25)
+
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618]
+motion_mode = 1
+script = ExtResource("1_w5kba")
+
+[node name="ShipInterior" type="TileMapLayer" parent="." unique_id=1942757402]
+tile_set = ExtResource("1_iu1tc")
+script = ExtResource("2_w5kba")
+metadata/_custom_type_script = "uid://hxcohlkncnnv"
+
+[node name="FishCover" type="Sprite2D" parent="ShipInterior" unique_id=2135026274]
+position = Vector2(0, -1.5258789e-05)
+scale = Vector2(8, 8)
+texture = ExtResource("3_fm4s6")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1273243505]
+position = Vector2(-27, -24)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ffgno")
+
+[node name="TailCollision" type="CollisionShape2D" parent="." unique_id=824955813]
+position = Vector2(-164, -21.5)
+shape = SubResource("RectangleShape2D_ffgno")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1638340005]
+script = ExtResource("5_kjavq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=858826898]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_usbmo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=332674663]
+shape = SubResource("RectangleShape2D_e2diw")
