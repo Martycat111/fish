@@ -128,10 +128,10 @@ scale = Vector2(5, 5)
 texture = ExtResource("8_w6tu8")
 script = ExtResource("9_jovkm")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Fishingrod" unique_id=610287997]
+[node name="RodArea" type="Area2D" parent="Fishingrod" unique_id=1065662849]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fishingrod/RigidBody2D" unique_id=1457033579]
+[node name="RodCollision" type="CollisionShape2D" parent="Fishingrod/RodArea" unique_id=1457033579]
 scale = Vector2(0.2, 0.2)
 shape = SubResource("CapsuleShape2D_2b7dg")
 
-[connection signal="body_entered" from="Fishingrod/RigidBody2D" to="Fishingrod" method="_on_rigid_body_2d_body_entered"]
+[connection signal="body_entered" from="Fishingrod/RodArea" to="Fishingrod" method="_on_rod_area_body_entered"]

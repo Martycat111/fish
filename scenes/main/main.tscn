@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dt402fglf8se4" path="res://scenes/player/player_ship.tscn" id="2_iuonh"]
 [ext_resource type="Script" uid="uid://yuilffyolyue" path="res://scenes/main/hud_materialnotify.gd" id="3_k2fmo"]
-[ext_resource type="Script" uid="uid://djcfpmueebs8b" path="res://scenes/main/asteroid.gd" id="4_l3cfh"]
 
 [node name="Main" type="Node2D" unique_id=1617692764]
 
@@ -11,6 +10,3 @@
 [node name="Notifier" type="Node2D" parent="." unique_id=1021113939]
 position = Vector2(200, 200)
 script = ExtResource("3_k2fmo")
-
-[node name="Asteroid" type="Node2D" parent="." unique_id=185981670]
-script = ExtResource("4_l3cfh")

@@ -18,6 +18,7 @@ config/icon="res://misc/textures/icon.svg"
 [autoload]
 
 Globals="*uid://bmqmqcmscmr6l"
+Asteroid="*uid://djcfpmueebs8b"
 
 [display]
 

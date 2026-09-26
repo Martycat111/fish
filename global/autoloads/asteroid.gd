@@ -13,12 +13,12 @@ enum Chances {
 var asteroid_spawn_interval = 0
 var time_since_spawn = 0
 
-@onready var noter = get_node("../Notifier")
+@onready var noter = get_tree().root.get_node("Main/Notifier")
 
 var asteroid_scene = load("res://scenes/asteroid/asteroid.tscn")
 
 func ready() -> void:
-	breakdown()
+	pass
 
 func _process(delta: float) -> void: 
 	time_since_spawn += delta
