@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @export var sprite_2d: AnimatedSprite2D
 
-var speed = randi_range(5, 25)
+var speed = randi_range(50, 100)
 
 var a = randi_range(1, 2)
 
