@@ -28,8 +28,10 @@ func _process(delta: float) -> void:
 		#spawn asteroid
 		var instance = asteroid_scene.instantiate()
 		add_child(instance)
-		var posx = randi_range(-600, 600)
-		var posy = randi_range(-300, 300)
+		print(Globals.xpos)
+		print(Globals.ypos)
+		var posx = Globals.xpos + randi_range(-200, 200)
+		var posy = Globals.ypos + randi_range(-200, 200)
 		instance.position = Vector2(posx, posy)
 
 

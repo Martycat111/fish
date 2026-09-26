@@ -17,7 +17,7 @@ var rotation_speed: float = 2
 
 func _process(delta: float) -> void:
 	Globals.xpos = self.position[0]
-	Globals.xpos = self.position[1]
+	Globals.ypos = self.position[1]
 
 
 func _physics_process(_delta: float) -> void:
