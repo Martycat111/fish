@@ -23,7 +23,12 @@ class BrokenWarning:
 func _ready() -> void:
 	tile_set = DEFAULT_SHIP_TILE_SET
 	if !Engine.is_editor_hint():
-		damage_ship()
+		damage_over_time()
+
+func damage_over_time() -> void:
+	damage_ship()
+	await get_tree().create_timer(randi_range(30, 40)).timeout
+	damage_over_time()
 
 func damage_ship() -> void:
 	

@@ -9,6 +9,8 @@ extends CharacterBody2D
 @export var breakable_electrical: TileMapLayer
 @export var breakable_glass: TileMapLayer
 @export var camera: Camera2D
+@export var label: Label
+@export var timer: Timer
 
 @onready var music = get_node("../AudioStreamPlayer2D")
 
@@ -16,6 +18,7 @@ var speed: float = 10
 var rotation_speed: float = 2
 
 func _process(delta: float) -> void:
+	label.text = "Time till planetfall: %s seconds" % str(round(timer.time_left))
 	Globals.xpos = self.position[0]
 	Globals.ypos = self.position[1]
 

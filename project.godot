@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Fish & Ships"
-run/main_scene="uid://cjuaovgvb7gxe"
+run/main_scene="uid://26nvh2txqs30"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://misc/textures/icon.svg"
 

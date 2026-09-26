@@ -4,17 +4,106 @@
 [ext_resource type="AudioStream" uid="uid://c13y286r4g7wk" path="res://misc/music/Background Music Loop for Shooting.mp3" id="3_6q06x"]
 [ext_resource type="Script" uid="uid://yuilffyolyue" path="res://scenes/main/hud_materialnotify.gd" id="3_k2fmo"]
 [ext_resource type="Script" uid="uid://ct13eyamleomo" path="res://scenes/main/audio.gd" id="3_l3cfh"]
+[ext_resource type="Script" uid="uid://b8lhgfpfxhcbq" path="res://scenes/main/instructions.gd" id="5_6q06x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow5a4"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.18000486, 0.18000486, 0.18000486, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 5
 
 [node name="Main" type="Node2D" unique_id=1617692764]
 
-[node name="PlayerShip" parent="." unique_id=1549670618 instance=ExtResource("2_iuonh")]
+[node name="PlayerShip" parent="." unique_id=1549670618 node_paths=PackedStringArray("label", "timer") instance=ExtResource("2_iuonh")]
+position = Vector2(960, 540)
+label = NodePath("../CanvasLayer/Label")
+timer = NodePath("Timer")
 
 [node name="Notifier" type="Node2D" parent="PlayerShip" unique_id=1021113939]
 position = Vector2(0, -300)
 script = ExtResource("3_k2fmo")
+
+[node name="Timer" type="Timer" parent="PlayerShip" unique_id=1417544716]
+wait_time = 500.0
+autostart = true
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1030334836]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=811970598]
 stream = ExtResource("3_6q06x")
 script = ExtResource("3_l3cfh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=838358457]
+
+[node name="Instructions" type="Panel" parent="CanvasLayer" unique_id=533220742]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ow5a4")
+script = ExtResource("5_6q06x")
+
+[node name="Controls" type="Label" parent="CanvasLayer/Instructions" unique_id=39587460]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 45.0
+offset_right = 508.0
+offset_bottom = 182.0
+theme_override_font_sizes/font_size = 100
+text = "Controls:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Instructions" unique_id=949531922]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 216.0
+offset_right = 1402.0
+offset_bottom = 912.0
+theme_override_font_sizes/normal_font_size = 45
+text = "WAD - Player Movement
+AD - Ship Rotation
+Space - Ship Acceleration / Fix broken utilities
+Tab - Switch between inside/outside view.
+"
+
+[node name="Button" type="Button" parent="CanvasLayer/Instructions" unique_id=1469314119]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -216.0
+offset_right = 147.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=72613196]
+z_index = -1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.5
+offset_top = 49.0
+offset_right = 190.5
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Time until planet fall: 0 seconds"
+
+[connection signal="pressed" from="CanvasLayer/Instructions/Button" to="CanvasLayer/Instructions" method="_on_button_pressed"]

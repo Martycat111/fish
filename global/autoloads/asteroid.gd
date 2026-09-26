@@ -41,8 +41,9 @@ func _process(delta: float) -> void:
 func breakdown():
 	roll_items()
 	print(items)
-	noter.notify_array(items)
-	items = []
+	if noter:
+		noter.notify_array(items)
+		items = []
 
 func roll_chance(): chance = randf()
 

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://26nvh2txqs30"]
 
-[ext_resource type="Texture2D" uid="uid://po3ld3tegaav" path="res://Fish.png" id="1_epypp"]
-[ext_resource type="Texture2D" uid="uid://bf5wbtnda4ms8" path="res://New Piskel-1.png.png" id="2_0hol4"]
-[ext_resource type="Texture2D" uid="uid://bxy3mmbd1ierq" path="res://Asteroids.png" id="3_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://po3ld3tegaav" path="res://scenes/main/CutsceneIntro/Fish.png" id="1_epypp"]
+[ext_resource type="Script" uid="uid://bb5de3hroboav" path="res://scenes/main/CutsceneIntro/node_2d.gd" id="1_y5fiq"]
+[ext_resource type="Texture2D" uid="uid://bf5wbtnda4ms8" path="res://scenes/main/CutsceneIntro/New Piskel-1.png.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://bxy3mmbd1ierq" path="res://scenes/main/CutsceneIntro/Asteroids.png" id="3_q6r6c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rsfkd"]
 animations = [{
@@ -43,7 +44,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(2.9666667, 3.5333333, 4.3, 5.1666665),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -7.00226095900125, -11.021754226344191, -10.54178868204575]
+"values": [0.0, -7.00226095900125, -11.021754226344193, -10.54178868204575]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -197,7 +198,9 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_rsfkd"]
 sources/0 = SubResource("TileSetAtlasSource_4d7sh")
 
-[node name="Node2D" type="Node2D" unique_id=1033746432]
+[node name="Node2D" type="Node2D" unique_id=1033746432 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_y5fiq")
+animation_player = NodePath("AnimatedSprite2D/AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1087037526]
 sprite_frames = SubResource("SpriteFrames_rsfkd")
