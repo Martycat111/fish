@@ -10,17 +10,26 @@ enum Chances {
 	STONE = 4,
 }
 
-var asteroid_spawn_interval = 5
+var asteroid_spawn_interval = 0
 var time_since_spawn = 0
 
 @onready var noter = get_node("../Notifier")
+
+var asteroid_scene = load("res://scenes/asteroid/asteroid.tscn")
 
 func _process(delta: float) -> void: 
 	time_since_spawn += delta
 	if time_since_spawn > asteroid_spawn_interval:
 		time_since_spawn = 0
-		asteroid_spawn_interval += randi_range(0, 2)
-		print("spawn a beor")
+		asteroid_spawn_interval += randf()
+		#spawn asteroid
+		var instance = asteroid_scene.instantiate()
+		add_child(instance)
+		var posx = randi_range(-600, 600)
+		var posy = randi_range(-300, 300)
+		instance.position = Vector2(posx, posy)
+
+		
 
 func breakdown():
 	roll_items()
