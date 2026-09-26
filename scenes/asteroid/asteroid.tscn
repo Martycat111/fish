@@ -3,33 +3,48 @@
 [ext_resource type="Texture2D" uid="uid://ntrfii2yafxn" path="res://misc/textures/Asteroids.png" id="1_phgi8"]
 [ext_resource type="Script" uid="uid://d2iomi43giuu5" path="res://scenes/asteroid/aster.gd" id="2_j1t37"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j1t37"]
-texture = ExtResource("1_phgi8")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-0:2/0 = 0
+[sub_resource type="AtlasTexture" id="AtlasTexture_phgi8"]
+atlas = ExtResource("1_phgi8")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="TileSet" id="TileSet_2b7dg"]
-sources/0 = SubResource("TileSetAtlasSource_j1t37")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1t37"]
+atlas = ExtResource("1_phgi8")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2diw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phgi8")
+}],
+"loop": 1,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1t37")
+}],
+"loop": 1,
+"name": &"2",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e2diw"]
+radius = 49.010204
 
 [node name="Node2D" type="Node2D" unique_id=1002435834]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1474255760]
-scale = Vector2(10, 10)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0)
-tile_set = SubResource("TileSet_2b7dg")
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1812170176 node_paths=PackedStringArray("sprite_2d")]
+gravity_scale = 0.0
 script = ExtResource("2_j1t37")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="RigidBody2D" unique_id=381496993]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_e2diw")
+animation = &"1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=2060166135]
+position = Vector2(22, 0)
+shape = SubResource("CircleShape2D_e2diw")

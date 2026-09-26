@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var jump_velocity: float = 500
 var speed: float = 10
-var frozen: bool = false
+var frozen: bool = true
 
 func _physics_process(delta: float) -> void:
 	if frozen:

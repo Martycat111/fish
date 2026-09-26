@@ -48,6 +48,7 @@ breakable_glass = NodePath("ShipInterior/BreakableGlass")
 
 [node name="ShipInterior" type="TileMapLayer" parent="." unique_id=1942757402 node_paths=PackedStringArray("breakable_panel", "breakable_electrical", "breakable_glass")]
 tile_map_data = PackedByteArray("AAD///7/AAABAAIAAAAAAP7/AQACAAMAAAD+//7/AQACAAMAAAD/////AQACAAMAAAD+////AAABAAIAAAD9////AQACAAMAAAD8////AAABAAIAAAD8/wAAAQACAAMAAAD9/wAAAAABAAIAAAD+/wAAAQACAAMAAAD//wAAAAABAAIAAAD+/wEAAAABAAIAAAD+/wIAAQACAAMAAAD9/wIAAAABAAIAAAD9/wEAAQACAAMAAAD8/wEAAAABAAIAAAD7/wAAAAABAAIAAAD7/wEAAAAAAAMAAAD7////AAABAAMAAAD8//7/AQACAAMAAAD9//3/AQACAAMAAAD+//z/AAACAAAAAAD///v/AAACAAAAAAD///z/AAABAAIAAAAAAP3/AAABAAIAAAD///3/AQACAAMAAAD//wEAAQACAAMAAAABAP//AQADAAIAAAACAP7/AQADAAIAAAABAP3/AQADAAIAAAAAAPz/AQADAAIAAAACAAEAAQADAAIAAAABAAIAAQADAAIAAAAAAAMAAQADAAIAAAD//wIAAAABAAIAAAAAAAEAAAABAAIAAAABAAAAAAABAAIAAAACAP//AAACAAMAAAAAAAAAAQADAAIAAAD7//7/AQADAAIAAAD6//3/AQADAAIAAAD6/wIAAQADAAIAAAD+//3/AAABAAIAAAD9//7/AAABAAIAAAA=")
+enabled = false
 tile_set = ExtResource("1_iu1tc")
 y_sort_origin = 1
 script = ExtResource("2_w5kba")
@@ -58,26 +59,30 @@ metadata/_custom_type_script = "uid://hxcohlkncnnv"
 
 [node name="WallLayer1" type="TileMapLayer" parent="ShipInterior" unique_id=828989712]
 tile_map_data = PackedByteArray("AAAAAPv/AAABAAAAAAABAPz/AAABAAAAAAACAP3/AAABAAAAAAACAP7/AAABAAAAAAACAP//AAABAAAAAAACAAAAAAABAAAAAAACAAEAAAABAAAAAAABAAIAAAABAAAAAAAAAAMAAAAAAAAAAAD6/wIAAAAAAAAAAAD6//z/AAABAAAAAAD6//3/AAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD///v/AAAAAAAAAAD+//z/AAAAAAAAAAD9//3/AAAAAAAAAAD7//3/AAABAAAAAAA=")
+enabled = false
 tile_set = SubResource("TileSet_ffgno")
 
 [node name="WallLayer2" type="TileMapLayer" parent="ShipInterior" unique_id=473515380]
 tile_map_data = PackedByteArray("AAD6//z/AAAAAAAAAAD6/wIAAAABAAAAAAAAAAMAAAABAAAAAAA=")
+enabled = false
 tile_set = SubResource("TileSet_ffgno")
 
 [node name="BreakablePanel" type="TileMapLayer" parent="ShipInterior" unique_id=1820587950]
 tile_map_data = PackedByteArray("AAD+//7/AAABAAEAAAD9/wEAAAABAAEAAAA=")
+enabled = false
 tile_set = ExtResource("1_iu1tc")
 
 [node name="BreakableElectrical" type="TileMapLayer" parent="ShipInterior" unique_id=952950741]
 tile_map_data = PackedByteArray("AAD8//7/AQADAAEAAAD//wEAAQADAAEAAAA=")
+enabled = false
 tile_set = ExtResource("1_iu1tc")
 
 [node name="BreakableGlass" type="TileMapLayer" parent="ShipInterior" unique_id=1596485531]
 tile_map_data = PackedByteArray("AAD8/wAAAQACAAIAAAD9//3/AQACAAIAAAA=")
+enabled = false
 tile_set = ExtResource("1_iu1tc")
 
 [node name="FishCover" type="Sprite2D" parent="ShipInterior" unique_id=2135026274]
-visible = false
 position = Vector2(0, -1.5258789e-05)
 scale = Vector2(8, 8)
 texture = ExtResource("3_fm4s6")
@@ -92,6 +97,7 @@ position = Vector2(-164, -21.5)
 shape = SubResource("RectangleShape2D_ffgno")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1638340005]
+visible = false
 position = Vector2(49, -15)
 collision_layer = 2
 collision_mask = 4

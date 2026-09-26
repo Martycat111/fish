@@ -31,6 +31,9 @@ func _physics_process(_delta: float) -> void:
 	if !player.frozen:
 		return
 	
+	if is_on_wall():
+		velocity = velocity.move_toward(Vector2.ZERO, 0.1)
+	
 	if Input.is_action_pressed("move_forward"):
 		velocity += speed * Vector2.RIGHT.rotated(rotation)
 	
