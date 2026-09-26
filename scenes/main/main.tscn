@@ -41,4 +41,5 @@ position = Vector2(-161.5, -19.5)
 shape = SubResource("RectangleShape2D_ffgno")
 
 [node name="Material-Notify" type="Node2D" parent="." unique_id=1965877195]
+position = Vector2(430, 260)
 script = ExtResource("5_6q06x")

@@ -5,7 +5,7 @@ var notification_scene = load("res://scenes/notification/notification.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	notify("gaming", 3)
+	notify("Example", 1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,5 +17,7 @@ func notify(item_name: String, amount: int):
 	add_child(instance)
 	instance.set_text("+" + str(amount) + " " + item_name)
 	var anim = instance.get_node("AnimationPlayer")
+	print(anim)
 	anim.play("Note")
-	pass
+	await anim.animation_finished
+	instance.queue_free()
