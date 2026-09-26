@@ -24,7 +24,10 @@ func _process(delta: float) -> void:
 	time_since_spawn += delta
 	if time_since_spawn > asteroid_spawn_interval:
 		time_since_spawn = 0
-		asteroid_spawn_interval += randf()
+		if !asteroid_spawn_interval > 5:
+			asteroid_spawn_interval += randf()
+		else:
+			asteroid_spawn_interval -= randf()
 		#spawn asteroid
 		var instance = asteroid_scene.instantiate()
 		add_child(instance)
