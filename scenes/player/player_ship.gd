@@ -19,6 +19,8 @@ var rotation_speed: float = 2
 
 func _process(delta: float) -> void:
 	label.text = "Time till planetfall: %s seconds" % str(round(timer.time_left))
+	if timer.time_left < 1:
+		get_tree().change_scene_to_file("res://scenes/main/CutsceneOutro/Outro cutscene.tscn")
 	Globals.xpos = self.position[0]
 	Globals.ypos = self.position[1]
 
