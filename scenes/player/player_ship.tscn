@@ -43,11 +43,14 @@ ship_interior = NodePath("ShipInterior")
 wall_layer_1 = NodePath("ShipInterior/WallLayer1")
 wall_layer_2 = NodePath("ShipInterior/WallLayer2")
 
-[node name="ShipInterior" type="TileMapLayer" parent="." unique_id=1942757402]
-tile_map_data = PackedByteArray("AAD///7/AAABAAIAAAAAAP7/AQACAAMAAAD+//7/AQACAAMAAAD/////AQACAAMAAAD+////AAABAAIAAAD9////AQACAAMAAAD8////AAABAAIAAAD8/wAAAAACAAIAAAD9/wAAAAABAAIAAAD+/wAAAQACAAMAAAD//wAAAAABAAIAAAD+/wEAAAABAAIAAAD+/wIAAAABAAEAAAD9/wIAAAABAAIAAAD9/wEAAQACAAMAAAD8/wEAAAABAAIAAAD7/wAAAAABAAIAAAD7/wEAAAAAAAMAAAD7////AAABAAMAAAD8//7/AAACAAIAAAD9//3/AQACAAMAAAD+//z/AQACAAMAAAD///v/AAABAAIAAAD///z/AAABAAIAAAAAAP3/AAABAAIAAAD///3/AAABAAEAAAD//wEAAQACAAMAAAABAP//AQADAAIAAAACAP7/AQADAAIAAAABAP3/AQADAAIAAAAAAPz/AQADAAIAAAACAAEAAQADAAIAAAABAAIAAQADAAIAAAAAAAMAAQADAAIAAAD//wIAAAABAAIAAAAAAAEAAAABAAIAAAABAAAAAAABAAIAAAACAP//AAACAAMAAAAAAAAAAQADAAIAAAD7//7/AQADAAIAAAD6//3/AQADAAIAAAD6/wIAAQADAAIAAAD+//3/AAABAAIAAAD9//7/AAABAAIAAAA=")
+[node name="ShipInterior" type="TileMapLayer" parent="." unique_id=1942757402 node_paths=PackedStringArray("breakable_panel", "breakable_electrical", "breakable_glass")]
+tile_map_data = PackedByteArray("AAD///7/AAABAAIAAAAAAP7/AQACAAMAAAD+//7/AQACAAMAAAD/////AQACAAMAAAD+////AAABAAIAAAD9////AQACAAMAAAD8////AAABAAIAAAD8/wAAAQACAAMAAAD9/wAAAAABAAIAAAD+/wAAAQACAAMAAAD//wAAAAABAAIAAAD+/wEAAAABAAIAAAD+/wIAAQACAAMAAAD9/wIAAAABAAIAAAD9/wEAAQACAAMAAAD8/wEAAAABAAIAAAD7/wAAAAABAAIAAAD7/wEAAAAAAAMAAAD7////AAABAAMAAAD8//7/AQACAAMAAAD9//3/AQACAAMAAAD+//z/AAACAAAAAAD///v/AAACAAAAAAD///z/AAABAAIAAAAAAP3/AAABAAIAAAD///3/AQACAAMAAAD//wEAAQACAAMAAAABAP//AQADAAIAAAACAP7/AQADAAIAAAABAP3/AQADAAIAAAAAAPz/AQADAAIAAAACAAEAAQADAAIAAAABAAIAAQADAAIAAAAAAAMAAQADAAIAAAD//wIAAAABAAIAAAAAAAEAAAABAAIAAAABAAAAAAABAAIAAAACAP//AAACAAMAAAAAAAAAAQADAAIAAAD7//7/AQADAAIAAAD6//3/AQADAAIAAAD6/wIAAQADAAIAAAD+//3/AAABAAIAAAD9//7/AAABAAIAAAA=")
 tile_set = ExtResource("1_iu1tc")
 y_sort_origin = 1
 script = ExtResource("2_w5kba")
+breakable_panel = NodePath("BreakablePanel")
+breakable_electrical = NodePath("BreakableElectrical")
+breakable_glass = NodePath("BreakableGlass")
 metadata/_custom_type_script = "uid://hxcohlkncnnv"
 
 [node name="FishCover" type="Sprite2D" parent="ShipInterior" unique_id=2135026274]
@@ -63,6 +66,18 @@ tile_set = SubResource("TileSet_ffgno")
 [node name="WallLayer2" type="TileMapLayer" parent="ShipInterior" unique_id=473515380]
 tile_map_data = PackedByteArray("AAD6//z/AAAAAAAAAAD6/wIAAAABAAAAAAAAAAMAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_ffgno")
+
+[node name="BreakablePanel" type="TileMapLayer" parent="ShipInterior" unique_id=1820587950]
+tile_map_data = PackedByteArray("AAD+//7/AAABAAEAAAD9/wEAAAABAAEAAAA=")
+tile_set = ExtResource("1_iu1tc")
+
+[node name="BreakableElectrical" type="TileMapLayer" parent="ShipInterior" unique_id=952950741]
+tile_map_data = PackedByteArray("AAD8//7/AQADAAEAAAD//wEAAQADAAEAAAA=")
+tile_set = ExtResource("1_iu1tc")
+
+[node name="BreakableGlass" type="TileMapLayer" parent="ShipInterior" unique_id=1596485531]
+tile_map_data = PackedByteArray("AAD8/wAAAQACAAIAAAD9//3/AQACAAIAAAA=")
+tile_set = ExtResource("1_iu1tc")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1273243505]
 position = Vector2(-27, -24)
