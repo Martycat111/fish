@@ -1,6 +1,6 @@
 extends Panel
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	get_tree().paused = true
 
 func _on_button_pressed() -> void:

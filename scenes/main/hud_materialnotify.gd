@@ -14,13 +14,18 @@ func _process(_delta: float) -> void:
 	global_rotation = 0
 
 func notify_array(al: Array):
+	var already_said: Array = []
 	for i in al:
-		notify(i, 1)
-		await anim.animation_finished
+		if !(i in already_said):
+			notify(i, al.count(i))
+			already_said.append(i)
+			await anim.animation_finished
 
 func notify_string(string: String):
 	var instance = notification_scene.instantiate()
 	add_child(instance)
+	instance.position = instance.global_position
+	instance.top_level = true
 	instance.set_text(string)
 	anim = instance.get_node("AnimationPlayer")
 	anim.play("Note")
@@ -30,6 +35,8 @@ func notify_string(string: String):
 func notify(item_name: String, amount: int):
 	var instance = notification_scene.instantiate()
 	add_child(instance)
+	instance.position = instance.global_position
+	instance.top_level = true
 	instance.set_text("+" + str(amount) + " " + item_name)
 	anim = instance.get_node("AnimationPlayer")
 	anim.play("Note")

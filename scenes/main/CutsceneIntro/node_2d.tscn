@@ -1,9 +1,14 @@
-[gd_scene format=3 uid="uid://26nvh2txqs30"]
+[gd_scene format=4 uid="uid://26nvh2txqs30"]
 
 [ext_resource type="Texture2D" uid="uid://po3ld3tegaav" path="res://scenes/main/CutsceneIntro/Fish.png" id="1_epypp"]
 [ext_resource type="Script" uid="uid://bb5de3hroboav" path="res://scenes/main/CutsceneIntro/node_2d.gd" id="1_y5fiq"]
 [ext_resource type="Texture2D" uid="uid://bf5wbtnda4ms8" path="res://scenes/main/CutsceneIntro/New Piskel-1.png.png" id="2_0hol4"]
 [ext_resource type="Texture2D" uid="uid://bxy3mmbd1ierq" path="res://scenes/main/CutsceneIntro/Asteroids.png" id="3_q6r6c"]
+[ext_resource type="TileSet" uid="uid://ejp47dcn53oo" path="res://global/classes/ship/default_ship_tile_set.tres" id="4_gxjit"]
+[ext_resource type="Texture2D" uid="uid://lf0rlggibn2m" path="res://misc/textures/Wall-sides.png" id="6_pf20k"]
+[ext_resource type="Texture2D" uid="uid://b2cr82msx1605" path="res://misc/textures/Fish.png" id="7_b1blt"]
+[ext_resource type="Texture2D" uid="uid://b02u70gh0y1jf" path="res://misc/textures/icon.svg" id="8_l0vua"]
+[ext_resource type="Texture2D" uid="uid://bv8svtkaqbkaw" path="res://misc/textures/Fishingrod.png" id="9_c8omo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rsfkd"]
 animations = [{
@@ -128,6 +133,101 @@ _data = {
 &"RESET": SubResource("Animation_d21ai")
 }
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w6tu8"]
+texture = ExtResource("6_pf20k")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -14.986177, -16, -15.043486, 16, -16, 16)
+3:0/0 = 0
+3:1/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(15.043486, -16, 16, -16, 16, 16, 15.043486, 16)
+
+[sub_resource type="TileSet" id="TileSet_ffgno"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_w6tu8")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffgno"]
+radius = 18.0
+height = 36.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2diw"]
+size = Vector2(20, 25)
+
+[sub_resource type="Shader" id="Shader_jovkm"]
+code = "shader_type canvas_item;
+
+uniform vec4 bg_color: source_color;
+uniform vec2 offset;
+uniform float bigStarSlow = 2.0;
+uniform float mediumStarSlow = 6.0;
+uniform float smallStarSlow = 8.0;
+
+uniform float smallStarAmount = 0.002;
+uniform float mediumStarAmount = 0.01;
+uniform float bigStarAmount = 0.02;
+
+float rand(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void fragment() {
+	vec2 normCoordBig = FRAGCOORD.xy+floor(offset/bigStarSlow);
+	vec2 normCoordMedium = FRAGCOORD.xy+floor(offset/mediumStarSlow);
+	vec2 normCoordSmall = FRAGCOORD.xy+floor(offset/smallStarSlow);
+	
+	float color = 0.0;
+	
+	float size = 20.0;
+	float prob = 1.0-mediumStarAmount;
+	vec2 pos = floor(1.0 / size * normCoordMedium);
+	float starValue = rand(pos);
+
+	// Draw medium Stars
+	if (starValue > prob)
+	{
+		vec2 center = size * pos + vec2(size, size) * 0.5;
+		float t = 0.9 + 0.2 * sin(TIME * 8.0 + (starValue - prob) / (1.0 - prob) * 45.0);
+		color = 1.0 - distance(normCoordMedium.xy, center) / (0.5 * size);
+		color = color * t / (abs(normCoordMedium.y - center.y)) * t / (abs(normCoordMedium.x - center.x));
+	}
+	
+	// Draw Big stars
+	size = 100.0;
+	prob = 1.0-bigStarAmount;
+	pos = floor(1.0 / size * normCoordBig);
+	starValue = rand(pos);
+
+	if (starValue > prob)
+	{
+		vec2 center = size * pos + vec2(size, size) * 0.5;
+		float t = 0.9 + 0.2 * sin(TIME * 8.0 + (starValue - prob) / (1.0 - prob) * 45.0);
+		color = 1.0 - distance(normCoordBig.xy, center) / (0.5 * size);
+		color = color * t / (abs(normCoordBig.y - center.y)) * t / (abs(normCoordBig.x - center.x));
+	}
+	
+	// Draw Small stars
+	if (rand(normCoordSmall / 20.0) > 1.0-smallStarAmount)
+	{
+		float r = rand(normCoordSmall);
+		color = r * (0.85 * sin(TIME * (r * 5.0) + 720.0 * r) + 0.95);
+	}
+	COLOR = vec4(vec3(color),color) + bg_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hf5w6"]
+shader = SubResource("Shader_jovkm")
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/bigStarSlow = 2.0
+shader_parameter/mediumStarSlow = 6.0
+shader_parameter/smallStarSlow = 8.0
+shader_parameter/smallStarAmount = 0.002
+shader_parameter/mediumStarAmount = 0.01
+shader_parameter/bigStarAmount = 0.02
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4d7sh"]
 texture = ExtResource("3_q6r6c")
 texture_region_size = Vector2i(32, 32)
@@ -198,9 +298,22 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_rsfkd"]
 sources/0 = SubResource("TileSetAtlasSource_4d7sh")
 
-[node name="Node2D" type="Node2D" unique_id=1033746432 node_paths=PackedStringArray("animation_player")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxjit"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Node2D" type="Node2D" unique_id=1033746432 node_paths=PackedStringArray("animation_player", "options")]
 script = ExtResource("1_y5fiq")
 animation_player = NodePath("AnimatedSprite2D/AnimationPlayer")
+options = NodePath("CanvasLayer/Options")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1087037526]
 sprite_frames = SubResource("SpriteFrames_rsfkd")
@@ -208,6 +321,86 @@ sprite_frames = SubResource("SpriteFrames_rsfkd")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1740309059]
 libraries/ = SubResource("AnimationLibrary_rj586")
 autoplay = &"Crash"
+
+[node name="PlayerShip" type="CharacterBody2D" parent="AnimatedSprite2D" unique_id=1549670618]
+visible = false
+motion_mode = 1
+
+[node name="ShipInterior" type="TileMapLayer" parent="AnimatedSprite2D/PlayerShip" unique_id=2114593834]
+tile_map_data = PackedByteArray("AAD///7/AAABAAIAAAAAAP7/AQACAAMAAAD+//7/AQACAAMAAAD/////AQACAAMAAAD+////AAABAAIAAAD9////AQACAAMAAAD8////AAABAAIAAAD8/wAAAQACAAMAAAD9/wAAAAABAAIAAAD+/wAAAQACAAMAAAD//wAAAAABAAIAAAD+/wEAAAABAAIAAAD+/wIAAQACAAMAAAD9/wIAAAABAAIAAAD9/wEAAQACAAMAAAD8/wEAAAABAAIAAAD7/wAAAAABAAIAAAD7/wEAAAAAAAMAAAD7////AAABAAMAAAD8//7/AQACAAMAAAD9//3/AQACAAMAAAD+//z/AAACAAAAAAD///v/AAACAAAAAAD///z/AAABAAIAAAAAAP3/AAABAAIAAAD///3/AQACAAMAAAD//wEAAQACAAMAAAABAP//AQADAAIAAAACAP7/AQADAAIAAAABAP3/AQADAAIAAAAAAPz/AQADAAIAAAACAAEAAQADAAIAAAABAAIAAQADAAIAAAAAAAMAAQADAAIAAAD//wIAAAABAAIAAAAAAAEAAAABAAIAAAABAAAAAAABAAIAAAACAP//AAACAAMAAAAAAAAAAQADAAIAAAD7//7/AQADAAIAAAD6//3/AQADAAIAAAD6/wIAAQADAAIAAAD+//3/AAABAAIAAAD9//7/AAABAAIAAAA=")
+enabled = false
+tile_set = ExtResource("4_gxjit")
+y_sort_origin = 1
+
+[node name="WallLayer1" type="TileMapLayer" parent="AnimatedSprite2D/PlayerShip/ShipInterior" unique_id=828989712]
+tile_map_data = PackedByteArray("AAAAAPv/AAABAAAAAAABAPz/AAABAAAAAAACAP3/AAABAAAAAAACAP7/AAABAAAAAAACAP//AAABAAAAAAACAAAAAAABAAAAAAACAAEAAAABAAAAAAABAAIAAAABAAAAAAAAAAMAAAAAAAAAAAD6/wIAAAAAAAAAAAD6//z/AAABAAAAAAD6//3/AAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD///v/AAAAAAAAAAD+//z/AAAAAAAAAAD9//3/AAAAAAAAAAD7//3/AAABAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_ffgno")
+
+[node name="WallLayer2" type="TileMapLayer" parent="AnimatedSprite2D/PlayerShip/ShipInterior" unique_id=473515380]
+tile_map_data = PackedByteArray("AAD6//z/AAAAAAAAAAD6/wIAAAABAAAAAAAAAAMAAAABAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_ffgno")
+
+[node name="BreakablePanel" type="TileMapLayer" parent="AnimatedSprite2D/PlayerShip/ShipInterior" unique_id=1820587950]
+tile_map_data = PackedByteArray("AAD+//7/AAABAAEAAAD9/wEAAAABAAEAAAA=")
+enabled = false
+tile_set = ExtResource("4_gxjit")
+
+[node name="BreakableElectrical" type="TileMapLayer" parent="AnimatedSprite2D/PlayerShip/ShipInterior" unique_id=952950741]
+tile_map_data = PackedByteArray("AAD8//7/AQADAAEAAAD//wEAAQADAAEAAAA=")
+enabled = false
+tile_set = ExtResource("4_gxjit")
+
+[node name="BreakableGlass" type="TileMapLayer" parent="AnimatedSprite2D/PlayerShip/ShipInterior" unique_id=1596485531]
+tile_map_data = PackedByteArray("AAD8/wAAAQACAAIAAAD9//3/AQACAAIAAAA=")
+enabled = false
+tile_set = ExtResource("4_gxjit")
+
+[node name="FishCover" type="Sprite2D" parent="AnimatedSprite2D/PlayerShip/ShipInterior" unique_id=2135026274]
+position = Vector2(0, -1.5258789e-05)
+scale = Vector2(8, 8)
+texture = ExtResource("7_b1blt")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="AnimatedSprite2D/PlayerShip" unique_id=1273243505]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ffgno")
+
+[node name="Player" type="CharacterBody2D" parent="AnimatedSprite2D/PlayerShip" unique_id=1638340005]
+visible = false
+position = Vector2(49, -15)
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D/PlayerShip/Player" unique_id=858826898]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_l0vua")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/PlayerShip/Player" unique_id=332674663]
+shape = SubResource("RectangleShape2D_e2diw")
+
+[node name="Fishingrod" type="Sprite2D" parent="AnimatedSprite2D/PlayerShip" unique_id=286533785]
+position = Vector2(150, 0)
+rotation = 0.8813913
+scale = Vector2(5, 5)
+texture = ExtResource("9_c8omo")
+
+[node name="RodArea" type="Area2D" parent="AnimatedSprite2D/PlayerShip/Fishingrod" unique_id=1065662849]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="AnimatedSprite2D/PlayerShip" unique_id=634272903]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Parallax2D" type="Parallax2D" parent="AnimatedSprite2D/PlayerShip/CanvasLayer" unique_id=1172665232]
+repeat_size = Vector2(7680, 7680)
+repeat_times = 2
+
+[node name="BG" type="ColorRect" parent="AnimatedSprite2D/PlayerShip/CanvasLayer/Parallax2D" unique_id=1620895943]
+z_index = -10
+material = SubResource("ShaderMaterial_hf5w6")
+offset_left = -1920.0
+offset_top = -1920.0
+scale = Vector2(4, 4)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=642936664]
 tile_set = SubResource("TileSet_rsfkd")
@@ -218,3 +411,55 @@ layer_0/tile_data = PackedInt32Array(33, 65536, 0, -65503, 65536, 0, -131039, 65
 position = Vector2(499.925, -9.485)
 rotation = 2.0245817
 zoom = Vector2(3.485, 3.485)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=57684210]
+
+[node name="Options" type="Panel" parent="CanvasLayer" unique_id=1184841497]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gxjit")
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/Options" unique_id=189108052]
+layout_mode = 0
+anchor_left = 0.14479166
+anchor_top = 0.012037037
+anchor_right = 0.82447916
+anchor_bottom = 0.24351852
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 100
+bbcode_enabled = true
+text = "[b]Catastrophic failure![/b]
+You did not make it back to earth..."
+fit_content = true
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Retry" type="Button" parent="CanvasLayer/Options" unique_id=2092563661]
+layout_mode = 0
+anchor_left = 0.1703125
+anchor_top = 0.6944444
+anchor_right = 0.40260416
+anchor_bottom = 0.88611114
+offset_bottom = -6.1035156e-05
+theme_override_font_sizes/font_size = 120
+text = "Retry"
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="CanvasLayer/Options" unique_id=274006865]
+layout_mode = 0
+anchor_left = 0.5619792
+anchor_top = 0.6944444
+anchor_right = 0.7942708
+anchor_bottom = 0.88611114
+offset_bottom = -6.1035156e-05
+theme_override_font_sizes/font_size = 120
+text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="AnimatedSprite2D/PlayerShip/Fishingrod/RodArea" to="AnimatedSprite2D/PlayerShip/Fishingrod" method="_on_rod_area_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Options/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/Options/Quit" to="." method="_on_quit_pressed"]

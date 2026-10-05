@@ -26,7 +26,7 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_w6tu8")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffgno"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jovkm"]
 radius = 126.0
 height = 280.0
 
@@ -40,7 +40,79 @@ size = Vector2(20, 25)
 radius = 36.735825
 height = 216.0
 
-[node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2", "breakable_panel", "breakable_electrical", "breakable_glass", "camera")]
+[sub_resource type="Shader" id="Shader_jovkm"]
+code = "shader_type canvas_item;
+
+uniform vec4 bg_color: source_color;
+uniform vec2 offset;
+uniform float bigStarSlow = 2.0;
+uniform float mediumStarSlow = 6.0;
+uniform float smallStarSlow = 8.0;
+
+uniform float smallStarAmount = 0.002;
+uniform float mediumStarAmount = 0.01;
+uniform float bigStarAmount = 0.02;
+
+float rand(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void fragment() {
+	vec2 normCoordBig = FRAGCOORD.xy+floor(offset/bigStarSlow);
+	vec2 normCoordMedium = FRAGCOORD.xy+floor(offset/mediumStarSlow);
+	vec2 normCoordSmall = FRAGCOORD.xy+floor(offset/smallStarSlow);
+	
+	float color = 0.0;
+	
+	float size = 20.0;
+	float prob = 1.0-mediumStarAmount;
+	vec2 pos = floor(1.0 / size * normCoordMedium);
+	float starValue = rand(pos);
+
+	// Draw medium Stars
+	if (starValue > prob)
+	{
+		vec2 center = size * pos + vec2(size, size) * 0.5;
+		float t = 0.9 + 0.2 * sin(TIME * 8.0 + (starValue - prob) / (1.0 - prob) * 45.0);
+		color = 1.0 - distance(normCoordMedium.xy, center) / (0.5 * size);
+		color = color * t / (abs(normCoordMedium.y - center.y)) * t / (abs(normCoordMedium.x - center.x));
+	}
+	
+	// Draw Big stars
+	size = 100.0;
+	prob = 1.0-bigStarAmount;
+	pos = floor(1.0 / size * normCoordBig);
+	starValue = rand(pos);
+
+	if (starValue > prob)
+	{
+		vec2 center = size * pos + vec2(size, size) * 0.5;
+		float t = 0.9 + 0.2 * sin(TIME * 8.0 + (starValue - prob) / (1.0 - prob) * 45.0);
+		color = 1.0 - distance(normCoordBig.xy, center) / (0.5 * size);
+		color = color * t / (abs(normCoordBig.y - center.y)) * t / (abs(normCoordBig.x - center.x));
+	}
+	
+	// Draw Small stars
+	if (rand(normCoordSmall / 20.0) > 1.0-smallStarAmount)
+	{
+		float r = rand(normCoordSmall);
+		color = r * (0.85 * sin(TIME * (r * 5.0) + 720.0 * r) + 0.95);
+	}
+	COLOR = vec4(vec3(color),color) + bg_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hf5w6"]
+shader = SubResource("Shader_jovkm")
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/bigStarSlow = 2.0
+shader_parameter/mediumStarSlow = 6.0
+shader_parameter/smallStarSlow = 8.0
+shader_parameter/smallStarAmount = 0.002
+shader_parameter/mediumStarAmount = 0.01
+shader_parameter/bigStarAmount = 0.02
+
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1549670618 node_paths=PackedStringArray("player", "fish_cover", "ship_interior", "wall_layer_1", "wall_layer_2", "breakable_panel", "breakable_electrical", "breakable_glass", "camera", "parallax_2d", "bg")]
 motion_mode = 1
 script = ExtResource("1_w5kba")
 player = NodePath("Player")
@@ -52,13 +124,16 @@ breakable_panel = NodePath("ShipInterior/BreakablePanel")
 breakable_electrical = NodePath("ShipInterior/BreakableElectrical")
 breakable_glass = NodePath("ShipInterior/BreakableGlass")
 camera = NodePath("Camera2D")
+parallax_2d = NodePath("CanvasLayer/Parallax2D")
+bg = NodePath("CanvasLayer/Parallax2D/BG")
 
-[node name="ShipInterior" type="TileMapLayer" parent="." unique_id=1942757402 node_paths=PackedStringArray("breakable_panel", "breakable_electrical", "breakable_glass")]
+[node name="ShipInterior" type="TileMapLayer" parent="." unique_id=1942757402 node_paths=PackedStringArray("player_ship", "breakable_panel", "breakable_electrical", "breakable_glass")]
 tile_map_data = PackedByteArray("AAD///7/AAABAAIAAAAAAP7/AQACAAMAAAD+//7/AQACAAMAAAD/////AQACAAMAAAD+////AAABAAIAAAD9////AQACAAMAAAD8////AAABAAIAAAD8/wAAAQACAAMAAAD9/wAAAAABAAIAAAD+/wAAAQACAAMAAAD//wAAAAABAAIAAAD+/wEAAAABAAIAAAD+/wIAAQACAAMAAAD9/wIAAAABAAIAAAD9/wEAAQACAAMAAAD8/wEAAAABAAIAAAD7/wAAAAABAAIAAAD7/wEAAAAAAAMAAAD7////AAABAAMAAAD8//7/AQACAAMAAAD9//3/AQACAAMAAAD+//z/AAACAAAAAAD///v/AAACAAAAAAD///z/AAABAAIAAAAAAP3/AAABAAIAAAD///3/AQACAAMAAAD//wEAAQACAAMAAAABAP//AQADAAIAAAACAP7/AQADAAIAAAABAP3/AQADAAIAAAAAAPz/AQADAAIAAAACAAEAAQADAAIAAAABAAIAAQADAAIAAAAAAAMAAQADAAIAAAD//wIAAAABAAIAAAAAAAEAAAABAAIAAAABAAAAAAABAAIAAAACAP//AAACAAMAAAAAAAAAAQADAAIAAAD7//7/AQADAAIAAAD6//3/AQADAAIAAAD6/wIAAQADAAIAAAD+//3/AAABAAIAAAD9//7/AAABAAIAAAA=")
 enabled = false
 tile_set = ExtResource("1_iu1tc")
 y_sort_origin = 1
 script = ExtResource("2_w5kba")
+player_ship = NodePath("..")
 breakable_panel = NodePath("BreakablePanel")
 breakable_electrical = NodePath("BreakableElectrical")
 breakable_glass = NodePath("BreakableGlass")
@@ -97,18 +172,19 @@ texture = ExtResource("3_fm4s6")
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1273243505]
 position = Vector2(-27, -24)
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_ffgno")
+shape = SubResource("CapsuleShape2D_jovkm")
 
 [node name="TailCollision" type="CollisionShape2D" parent="." unique_id=824955813]
 position = Vector2(-164, -21.5)
 shape = SubResource("RectangleShape2D_ffgno")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1638340005 node_paths=PackedStringArray("breakable_panel", "breakable_electrical", "breakable_glass")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1638340005 node_paths=PackedStringArray("player_ship", "breakable_panel", "breakable_electrical", "breakable_glass")]
 visible = false
 position = Vector2(49, -15)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("5_kjavq")
+player_ship = NodePath("..")
 breakable_panel = NodePath("../ShipInterior/BreakablePanel")
 breakable_electrical = NodePath("../ShipInterior/BreakableElectrical")
 breakable_glass = NodePath("../ShipInterior/BreakableGlass")
@@ -134,5 +210,20 @@ script = ExtResource("9_jovkm")
 [node name="RodCollision" type="CollisionShape2D" parent="Fishingrod/RodArea" unique_id=1457033579]
 scale = Vector2(0.2, 0.2)
 shape = SubResource("CapsuleShape2D_2b7dg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=634272903]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Parallax2D" type="Parallax2D" parent="CanvasLayer" unique_id=1172665232]
+repeat_size = Vector2(7680, 7680)
+repeat_times = 2
+
+[node name="BG" type="ColorRect" parent="CanvasLayer/Parallax2D" unique_id=1620895943]
+z_index = -10
+material = SubResource("ShaderMaterial_hf5w6")
+offset_left = -1920.0
+offset_top = -1920.0
+scale = Vector2(4, 4)
 
 [connection signal="body_entered" from="Fishingrod/RodArea" to="Fishingrod" method="_on_rod_area_body_entered"]

@@ -1,4 +1,4 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 
 var audio1 = load("res://misc/music/Background Music Loop for Shooting.mp3")
@@ -10,11 +10,7 @@ func _ready() -> void:
 	self.play()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func changemusic():
+func change_music():
 	if is_alt:
 		is_alt = false
 		self.set_stream(audio1)

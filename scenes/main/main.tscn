@@ -30,12 +30,13 @@ position = Vector2(0, -300)
 script = ExtResource("3_k2fmo")
 
 [node name="Timer" type="Timer" parent="PlayerShip" unique_id=1417544716]
-wait_time = 500.0
+wait_time = 200.0
 autostart = true
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1030334836]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=811970598]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="." unique_id=186611626]
+process_mode = 3
 stream = ExtResource("3_6q06x")
 script = ExtResource("3_l3cfh")
 
