@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cfjk5es6on0u" path="res://scenes/main/CutsceneOutro/New Piskel-1.png (1).png" id="4_y2klv"]
 [ext_resource type="Texture2D" uid="uid://d1ox5jnvhqo0i" path="res://scenes/main/CutsceneOutro/New Piskel-2.png.png" id="5_e0wb8"]
 [ext_resource type="TileSet" uid="uid://ejp47dcn53oo" path="res://global/classes/ship/default_ship_tile_set.tres" id="6_njo0i"]
-[ext_resource type="Script" uid="uid://hxcohlkncnnv" path="res://global/classes/ship/ship.gd" id="7_rdbfa"]
 [ext_resource type="Texture2D" uid="uid://lf0rlggibn2m" path="res://misc/textures/Wall-sides.png" id="8_jox5s"]
 [ext_resource type="Texture2D" uid="uid://b2cr82msx1605" path="res://misc/textures/Fish.png" id="9_655ot"]
 [ext_resource type="Texture2D" uid="uid://b02u70gh0y1jf" path="res://misc/textures/icon.svg" id="10_be706"]
@@ -418,16 +417,11 @@ visible = false
 motion_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="ShipInterior" type="TileMapLayer" parent="PlayerShip" unique_id=1421893990 node_paths=PackedStringArray("breakable_panel", "breakable_electrical", "breakable_glass")]
+[node name="ShipInterior" type="TileMapLayer" parent="PlayerShip" unique_id=422346683]
 tile_map_data = PackedByteArray("AAD///7/AAABAAIAAAAAAP7/AQACAAMAAAD+//7/AQACAAMAAAD/////AQACAAMAAAD+////AAABAAIAAAD9////AQACAAMAAAD8////AAABAAIAAAD8/wAAAQACAAMAAAD9/wAAAAABAAIAAAD+/wAAAQACAAMAAAD//wAAAAABAAIAAAD+/wEAAAABAAIAAAD+/wIAAQACAAMAAAD9/wIAAAABAAIAAAD9/wEAAQACAAMAAAD8/wEAAAABAAIAAAD7/wAAAAABAAIAAAD7/wEAAAAAAAMAAAD7////AAABAAMAAAD8//7/AQACAAMAAAD9//3/AQACAAMAAAD+//z/AAACAAAAAAD///v/AAACAAAAAAD///z/AAABAAIAAAAAAP3/AAABAAIAAAD///3/AQACAAMAAAD//wEAAQACAAMAAAABAP//AQADAAIAAAACAP7/AQADAAIAAAABAP3/AQADAAIAAAAAAPz/AQADAAIAAAACAAEAAQADAAIAAAABAAIAAQADAAIAAAAAAAMAAQADAAIAAAD//wIAAAABAAIAAAAAAAEAAAABAAIAAAABAAAAAAABAAIAAAACAP//AAACAAMAAAAAAAAAAQADAAIAAAD7//7/AQADAAIAAAD6//3/AQADAAIAAAD6/wIAAQADAAIAAAD+//3/AAABAAIAAAD9//7/AAABAAIAAAA=")
 enabled = false
 tile_set = ExtResource("6_njo0i")
 y_sort_origin = 1
-script = ExtResource("7_rdbfa")
-breakable_panel = NodePath("BreakablePanel")
-breakable_electrical = NodePath("BreakableElectrical")
-breakable_glass = NodePath("BreakableGlass")
-metadata/_custom_type_script = "uid://hxcohlkncnnv"
 
 [node name="WallLayer1" type="TileMapLayer" parent="PlayerShip/ShipInterior" unique_id=1969847550]
 tile_map_data = PackedByteArray("AAAAAPv/AAABAAAAAAABAPz/AAABAAAAAAACAP3/AAABAAAAAAACAP7/AAABAAAAAAACAP//AAABAAAAAAACAAAAAAABAAAAAAACAAEAAAABAAAAAAABAAIAAAABAAAAAAAAAAMAAAAAAAAAAAD6/wIAAAAAAAAAAAD6//z/AAABAAAAAAD6//3/AAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD///v/AAAAAAAAAAD+//z/AAAAAAAAAAD9//3/AAAAAAAAAAD7//3/AAABAAAAAAA=")
